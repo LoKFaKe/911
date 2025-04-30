@@ -1,0 +1,29 @@
+project/
+├── app/ (основное приложение)
+│   ├── __init__.py
+│   ├── main.py (главный модуль)
+│   ├── schedule/ (микросервис расписания)
+│   │   ├── routes.py
+│   │   ├── models.py
+│   │   └── templates/
+│   ├── shop/ (микросервис магазина)
+│   │   ├── routes.py
+│   │   ├── models.py
+│   │   └── templates/
+│   └── static/
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── test_results.log
+├── database/
+│   ├── init_db.py
+│   ├── test_data.sql
+│   └── schema.sql
+├── docker/
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── docs/
+│   ├── about.md
+│   └── db_design.md
+├── README.md
+└── requirements.txt

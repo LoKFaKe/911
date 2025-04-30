@@ -1,0 +1,24 @@
+import unittest
+from app.main import app
+from app.schedule.models import get_schedule
+
+class TestScheduleMicroservice(unittest.TestCase):
+    def setUp(self):
+        self.app = app.test_client()
+    
+    def test_homepage(self):
+        response = self.app.get('/')
+        self.assertEqual(response.status_code, 200)
+    
+    def test_schedule(self):
+        test_data = [('Math', 'Monday', '10:00')]
+        # Мокируем функцию get_schedule
+        with app.app_context():
+            original_get_schedule = get_schedule
+            app.get_schedule = lambda x: test_data
+            response = self.app.get('/schedule/group1')
+            self.assertIn(b'Math', response.data)
+            app.get_schedule = original_get_schedule
+
+if __name__ == '__main__':
+    unittest.main()
