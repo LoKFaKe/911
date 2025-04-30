@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Расписание группы {{ group_name }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .day { margin-bottom: 30px; border: 1px solid #ddd; border-radius: 5px; }
+        .day-header { background: #4CAF50; color: white; padding: 10px 15px; }
+        .lesson { padding: 15px; border-bottom: 1px solid #eee; }
+        .lesson:last-child { border-bottom: none; }
+        .time { font-weight: bold; color: #333; }
+        .subject { font-size: 18px; margin: 5px 0; }
+        .details { color: #666; font-size: 14px; }
+        .back-link { display: inline-block; margin-top: 20px; color: #4CAF50; }
+    </style>
+</head>
+<body>
+    <h1>Расписание группы {{ group_name }}</h1>
+    
+    {% for day_num, lessons in days.items() %}
+    <div class="day">
+        <div class="day-header">{{ day_names[day_num] }}</div>
+        {% for lesson in lessons %}
+        <div class="lesson">
+            <div class="time">{{ lesson['time_start'] }} - {{ lesson['time_end'] }}</div>
+            <div class="subject">{{ lesson['subject_name'] }}</div>
+            <div class="details">
+                {{ lesson['lesson_type'] }} | 
+                Преподаватель: {{ lesson['teacher_name'] }} | 
+                Аудитория: {{ lesson['room'] }}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    
+    <a href="/" class="back-link">← На главную</a>
+</body>
+</html>
